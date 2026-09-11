@@ -1,0 +1,1 @@
+export default function Page(){return <main className="shell"><div className="card"><span className="tag">Mentor</span><h1>Mentor</h1><p className="muted">This workspace reads your private Supabase learning records after you create notes, chats, and assessments.</p></div></main>}

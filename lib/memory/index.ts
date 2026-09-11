@@ -1,0 +1,3 @@
+import type {SupabaseClient} from "@supabase/supabase-js";
+export async function recentMessages(db:SupabaseClient,userId:string,sessionId?:string){if(!sessionId)return [];const {data}=await db.from("chat_messages").select("role,content").eq("user_id",userId).eq("session_id",sessionId).order("created_at",{ascending:false}).limit(8);return (data??[]).reverse() as {role:string;content:string}[]}
+export async function adaptiveDifficulty(db:SupabaseClient,userId:string,topic:string){const {data}=await db.from("performance_records").select("average_score").eq("user_id",userId).eq("topic_name",topic).maybeSingle();const score=data?.average_score; return score===undefined||score===null?"medium":score>=80?"hard":score<50?"easy":"medium";}

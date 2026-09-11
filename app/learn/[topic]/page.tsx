@@ -1,0 +1,1 @@
+import NotesReader from "@/components/notes-reader";export default async function Topic({params,searchParams}:{params:Promise<{topic:string}>;searchParams:Promise<{subject?:string}>}){const {topic}=await params;const {subject="General Studies"}=await searchParams;return <NotesReader subject={subject} topic={decodeURIComponent(topic)}/>}
