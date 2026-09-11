@@ -1,0 +1,2 @@
+import {NextResponse} from "next/server";import {z} from "zod";import {requireUser} from "@/lib/supabase/server";import {runLearningGraph} from "@/lib/langgraph/orchestrator";import {apiError} from "@/lib/api"; const request=z.object({source:z.string().min(5).max(15000)});
+export async function POST(req:Request){try{await requireUser();const {source}=request.parse(await req.json());const output=await runLearningGraph({intent:"syllabus",message:source});return NextResponse.json({syllabus:output.result})}catch(error){return apiError(error)}}
