@@ -1,1 +1,39 @@
-import Link from "next/link";const cards=[["Continue learning","Pick a topic and generate structured notes."],["Adaptive practice","Your next difficulty is based on stored assessment results."],["Evidence-led guidance","Complete an assessment to unlock a personalised mentor recommendation."]];export default function Dashboard(){return <main className="shell"><span className="tag">Dashboard</span><h1>What should you study next?</h1><p className="muted">Start a topic, ask your tutor, then let assessment evidence guide your revision.</p><div className="grid cols-3" style={{marginTop:24}}>{cards.map(c=><article className="card" key={c[0]}><h2 className="section-title">{c[0]}</h2><p className="muted">{c[1]}</p></article>)}</div><Link className="btn" href="/learn" style={{display:"inline-block",marginTop:24}}>Start learning</Link></main>}
+import Link from "next/link";
+const cards = [
+    ["Continue learning", "Pick a topic and generate structured notes."],
+    [
+        "Adaptive practice",
+        "Your next difficulty is based on stored assessment results.",
+    ],
+    [
+        "Evidence-led guidance",
+        "Complete an assessment to unlock a personalised mentor recommendation.",
+    ],
+];
+export default function Dashboard() {
+    return (
+        <main className="shell">
+            <span className="tag">Dashboard</span>
+            <h1>What should you study next?</h1>
+            <p className="muted">
+                Start a topic, ask your tutor, then let assessment evidence
+                guide your revision.
+            </p>
+            <div className="grid cols-3" style={{ marginTop: 24 }}>
+                {cards.map((c) => (
+                    <article className="card" key={c[0]}>
+                        <h2 className="section-title">{c[0]}</h2>
+                        <p className="muted">{c[1]}</p>
+                    </article>
+                ))}
+            </div>
+            <Link
+                className="btn"
+                href="/learn"
+                style={{ display: "inline-block", marginTop: 24 }}
+            >
+                Start learning
+            </Link>
+        </main>
+    );
+}

@@ -1,0 +1,6 @@
+{
+  "/api/notes/generate/route": "app/api/notes/generate/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/learn/page": "app/learn/page.js",
+  "/learn/[topic]/page": "app/learn/[topic]/page.js"
+}

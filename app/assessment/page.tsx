@@ -1,1 +1,22 @@
-"use client";import {useSearchParams,useRouter} from "next/navigation";import {useState} from "react";export default function Assessment(){const s=useSearchParams(),router=useRouter();const [subject,setSubject]=useState(s.get("subject")??"");const [topic,setTopic]=useState(s.get("topic")??"");const [difficulty,setDifficulty]=useState("adaptive");const [error,setError]=useState("");const [busy,setBusy]=useState(false);async function create(e:React.FormEvent){e.preventDefault();setBusy(true);const r=await fetch("/api/assessments/generate",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({subject,topic,difficulty})});const d=await r.json();setBusy(false);if(!r.ok)setError(d.error);else router.push(`/assessment/${d.assessmentId}`)}return <main className="shell" style={{maxWidth:650}}><form className="card grid" onSubmit={create}><span className="tag">Assessment agent</span><h1>Practice a topic</h1><input className="input" required placeholder="Subject" value={subject} onChange={e=>setSubject(e.target.value)}/><input className="input" required placeholder="Topic" value={topic} onChange={e=>setTopic(e.target.value)}/><select className="input" value={difficulty} onChange={e=>setDifficulty(e.target.value)}><option value="adaptive">Adaptive</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select>{error&&<p style={{color:"#b91c1c"}}>{error}</p>}<button className="btn" disabled={busy}>{busy?"Assessment generate ho raha hai…":"Create assessment"}</button></form></main>}
+import AssessmentForm from "@/components/assessment-form";
+
+type AssessmentSearchParams = {
+  subject?: string;
+  topic?: string;
+};
+
+export default async function AssessmentPage({
+  searchParams,
+}: {
+  searchParams?: Promise<AssessmentSearchParams>;
+}) {
+  const params = searchParams ? await searchParams : {};
+
+  return (
+    <AssessmentForm
+      initialSubject={params.subject ?? ""}
+      initialTopic={params.topic ?? ""}
+    />
+  );
+}
+
