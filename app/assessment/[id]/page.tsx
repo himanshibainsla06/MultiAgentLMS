@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+import AssessmentRunner from "@/components/assessment-runner";export default async function Page({params}:{params:Promise<{id:string}>}){const {id}=await params;return <AssessmentRunner id={id}/>}
+=======
 import { notFound } from "next/navigation";
 import AssessmentRunner from "@/components/assessment-runner";
 import { requireUser } from "@/lib/supabase/server";
@@ -20,3 +23,4 @@ export default async function AssessmentDetailPage({ params }: { params: Promise
         </section></main>;
     } catch { return notFound(); }
 }
+>>>>>>> main
