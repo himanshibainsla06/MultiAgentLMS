@@ -4,7 +4,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 import nextPlugin from "@next/eslint-plugin-next";
 
 export default [
-  { ignores: [".next/**", "node_modules/**"] },
+  { ignores: [".next/**", "node_modules/**", "next-env.d.ts"] },
   {
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -30,6 +30,10 @@ export default [
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
       sourceType: "module",
+      globals: {
+        process: "readonly",
+        module: "readonly",
+      },
     },
     rules: {
       ...js.configs.recommended.rules,
