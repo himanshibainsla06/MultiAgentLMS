@@ -1,1 +1,14 @@
-import {NextResponse} from "next/server"; export function apiError(error:unknown){const message=error instanceof Error?error.message:"Request failed"; const status=message==="Unauthorized"?401:400; console.error(JSON.stringify({event:"api_error",status,message}));return NextResponse.json({error:message.includes("GEMINI")?"The AI service is unavailable. Please try again later.":message},{status});}
+import { NextResponse } from "next/server";
+export function apiError(error: unknown) {
+    const message = error instanceof Error ? error.message : "Request failed";
+    const status = message === "Unauthorized" ? 401 : 400;
+    console.error(JSON.stringify({ event: "api_error", status, message }));
+    return NextResponse.json(
+        {
+            error: message.includes("GEMINI")
+                ? "The AI service is unavailable. Please try again later."
+                : message,
+        },
+        { status },
+    );
+}
